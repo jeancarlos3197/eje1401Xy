@@ -31,7 +31,9 @@ public class MainActivity extends AppCompatActivity {
             StrictMode.setThreadPolicy(pol);
             Class.forName("net.sourceforge.jtds.jdbc.Driver");
             cnn= DriverManager.getConnection("jdbc:jtds:sqlserver://192.168.1.43:1433/BDCarritoG1;"+
-                    "instance=MSSQLSERVER;user=sa;password=Aa123");
+                    "instance=MSSQLSERVER;" +
+                    "user=sa;" +
+                    "password=Aa123;");
         }catch (Exception e){
             Toast.makeText(getApplicationContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
         }
@@ -41,7 +43,9 @@ public class MainActivity extends AppCompatActivity {
     public void Consulta(View view){
         try {
             Statement st=conexionBD().createStatement();
-            ResultSet rs=st.executeQuery("SELECT * FROM usuarios where clave='"+txtPass.getText().toString()+"'");
+            ResultSet rs=st.executeQuery("SELECT * FROM usuarios where " +
+                    "logeo='"+txtUsu.getText().toString()+"' and " +
+                    "clave='"+ txtPass.getText().toString()+"'");
             if(rs.next()){
                 Toast.makeText(getApplicationContext(),"Conexion establecida",Toast.LENGTH_SHORT).show();
             }
