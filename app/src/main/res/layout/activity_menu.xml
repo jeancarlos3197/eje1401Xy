@@ -7,8 +7,8 @@
     tools:context=".MenuActivity">
 
     <LinearLayout
-        android:layout_width="339dp"
-        android:layout_height="491dp"
+        android:layout_width="345dp"
+        android:layout_height="554dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -55,6 +55,7 @@
             android:id="@+id/button5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:onClick="OtraVentana"
             android:text="Mantenimiento de usuarios" />
 
         <Button
@@ -68,5 +69,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Mantenimiento de productos" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="49dp" />
+
+        <Button
+            android:id="@+id/button8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="camara"
+            android:text="Camara" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

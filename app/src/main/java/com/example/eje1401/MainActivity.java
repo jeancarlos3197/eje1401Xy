@@ -2,6 +2,7 @@ package com.example.eje1401;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.View;
@@ -15,6 +16,8 @@ import java.sql.Statement;
 
 public class MainActivity extends AppCompatActivity {
     public EditText txtUsu, txtPass;
+    public Intent intent;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,15 +46,31 @@ public class MainActivity extends AppCompatActivity {
     public void Consulta(View view){
         try {
             Statement st=conexionBD().createStatement();
-            ResultSet rs=st.executeQuery("SELECT * FROM usuarios where " +
-                    "logeo='"+txtUsu.getText().toString()+"' and " +
+            ResultSet rs=st.executeQuery("SELECT * FROM usuarios WHERE " +
+                    "logeo='"+txtUsu.getText().toString()+"' AND " +
                     "clave='"+ txtPass.getText().toString()+"'");
             if(rs.next()){
-                Toast.makeText(getApplicationContext(),"Conexion establecida Version Patricia Condori O.",Toast.LENGTH_SHORT).show();
+                System.out.println("rs ");
+                String tipoU=rs.getString(2);
+                System.out.println(tipoU);
+                Toast.makeText(getApplicationContext(),"Conexion establecida Version 2.0 "+rs.getString(2),Toast.LENGTH_SHORT).show();
+                if(tipoU.compareTo("TIU00001")==0){//cliente
+                    Intent x=new Intent(this,MenuClienteActivity.class);
+                    startActivity(x);
+                }
+                if(tipoU.compareTo("TIU00002")==0){//admin
+                    Intent x=new Intent(this,MenuActivity.class);
+                    startActivity(x);
+                }
+                if(tipoU.compareTo("TIU00003")==0){//invitado
+                    Intent x=new Intent(this,MenuActivity.class);
+                    startActivity(x);
+                }
             }
         }catch (Exception e){
             Toast.makeText(getApplicationContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
         }
     }
+
 
 }
